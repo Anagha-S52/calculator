@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Calculator + Budget Guide</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Poppins", Arial, sans-serif;
+            background: url("cal.jpg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            height: 100vh;
+        }
+
+        /* Light tint so text is readable but image is visible */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 240, 245, 0.35);
+            z-index: -1;
+        }
+
+        /* LEFT SECTION */
+        .left-panel {
+            width: 55%;
+            padding: 60px;
+            color: #4b1515;
+        }
+
+        .left-panel h1 {
+            font-size: 32px;
+            color: #7a1a2f;
+        }
+
+        .left-panel h3 {
+            margin-top: 20px;
+            color: #6b1a24;
+        }
+
+        .left-panel p {
+            font-size: 16px;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 12px;
+            border-radius: 10px;
+            width: 90%;
+        }
+
+        /* RIGHT CALCULATOR */
+        .right-panel {
+            width: 45%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calculator {
+            background: rgba(255, 255, 255, 0.85);
+            padding: 25px;
+            border-radius: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            width: 320px;
+            text-align: center;
+            border: 2px solid #f2c6d7;
+        }
+
+        h2 {
+            color: #7a1a2f;
+            margin-bottom: 12px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 6px 0;
+            border-radius: 15px;
+            border: 1px solid #f2c6d7;
+            background: #fff7fb;
+            color: #5a1a1a;
+            text-align: center;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        button {
+            padding: 12px;
+            border: none;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #d9a066, #b66b3a);
+            color: #3a0f0f;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.03);
+        }
+
+        #result {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #7a1a2f;
+            background: #fff0f6;
+            padding: 10px;
+            border-radius: 15px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<!-- LEFT SIDE CONTENT -->
+<div class="left-panel">
+    <h1>Simple Budget Guide 💰</h1>
+
+    <h3>1. Track Your Income</h3>
+    <p>
+        Write down how much money you receive each month 
+        (salary, allowance, freelance, etc.).
+    </p>
+
+    <h3>2. List Your Expenses</h3>
+    <p>
+        Include rent, food, transport, phone bill, internet, and personal spending.
+    </p>
+
+    <h3>3. Save Before You Spend</h3>
+    <p>
+        Try saving at least 20% of your income before other expenses.
+    </p>
+
+    <h3>4. Use This Calculator</h3>
+    <p>
+        Use the calculator on the right to quickly add, subtract, or multiply your expenses.
+    </p>
+</div>
+
+<!-- RIGHT SIDE CALCULATOR -->
+<div class="right-panel">
+    <div class="calculator">
+       <h2>🪷 Smart Calculator 🪷</h2>
+
+
+        <input type="number" id="num1" placeholder="First number">
+        <input type="number" id="num2" placeholder="Second number">
+
+        <div class="grid">
+            <button onclick="add()">➕ Add</button>
+            <button onclick="subtract()">➖ Subtract</button>
+            <button onclick="multiply()">✖ Multiply</button>
+            <button onclick="divide()">➗ Divide</button>
+            <button onclick="power()">⚡ Power</button>
+            <button onclick="clearAll()">🧹 Clear</button>
+        </div>
+
+        <p id="result">Result will appear here ✨</p>
+    </div>
+</div>
+
+<script>
+function getValues() {
+    let a = Number(document.getElementById("num1").value);
+    let b = Number(document.getElementById("num2").value);
+    return [a, b];
+}
+
+function add() {
+    let [a, b] = getValues();
+    document.getElementById("result").innerText = "Result: " + (a + b);
+}
+
+function subtract() {
+    let [a, b] = getValues();
+    document.getElementById("result").innerText = "Result: " + (a - b);
+}
+
+function multiply() {
+    let [a, b] = getValues();
+    document.getElementById("result").innerText = "Result: " + (a * b);
+}
+
+function divide() {
+    let [a, b] = getValues();
+    if (b === 0) {
+        document.getElementById("result").innerText = "Oops — can't divide by zero! 💔";
+    } else {
+        document.getElementById("result").innerText = "Result: " + (a / b);
+    }
+}
+
+function power() {
+    let [a, b] = getValues();
+    document.getElementById("result").innerText = "Result: " + (a ** b);
+}
+
+function clearAll() {
+    document.getElementById("num1").value = "";
+    document.getElementById("num2").value = "";
+    document.getElementById("result").innerText = "Result will appear here ✨";
+}
+</script>
+
+</body>
+</html>
